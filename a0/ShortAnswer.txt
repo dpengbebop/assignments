@@ -9,9 +9,9 @@ Trump.
 
 How is this approach misleading? How might you fix it?
 
+This approach computes the number of shared accounts followed by each pair of users.It's misleading for quantifying the similarity merely by the counts of shared friends and not considering the total number of friends each pairs of users follow. E.g. Stein and Johnson follow much more friends than Clinton and Trump. Then it's obvious that the former have larger chance than the latter to have more common friends. In the case in this question, if Stein and Johnson follow 5000 friends in total while Clinton and Trump follow 2 friends in total, the percentages for them to have mutual friends are respectively 6.89% and 50%, which says the opposite from the conclusion in the question.
 
-
-
+So to fix this problem we should also take into account the total number of friends and analysis the percentage when considering the similarity. 
 
 
 
@@ -23,11 +23,8 @@ do you think this user is followed by both Hilary Clinton and Donald Trump,
 who are rivals? Do some web searches to see if you can find out more
 information.
 
-
-
-
-
-
+WhiteHouse is followed by both Hillary and Donald. 
+The white house was their shared goal and the reason why they became rivals during the political campaign. After the campaign Trump has become the host of the house so he continues following it and although Hillary didn't win the campaign, she stays in the political field so there's no reason to unfollow the white house. 
 
 
 
@@ -39,10 +36,9 @@ information.
 Johnson follows over 3K accounts, while Donald Trump follows less than
 50). Why do you think this is? How might that affect our analysis?
 
+Johnson follows accounts with various background while Trump follows mainly his team, his business and his family members. This maybe because Trump as the president and a successful businessman has achieved the influence he needs while Gary Johnson as a 2016 Libertarian candidate needs to reach more people to draw attention and spread ideas during and after the election campaign. It may also because they have different intention using twitter--Johnson uses it to build connection and network while Trump treats it as a way to express himself and affect others.
 
-
-
-
+It somehow reveals the different personality of these two. With the leap difference of the variety and volume of data(especially the insufficient data of Trump-follows), it might affect the authentication and accuracy of our analysis.
 
 
 
@@ -55,3 +51,7 @@ https://dev.twitter.com/rest/reference/get/friends/ids, how many requests will
 we have to make? Given how Twitter does rate limiting
 (https://dev.twitter.com/rest/public/rate-limiting), approximately how many
 minutes will it take to collect this data?
+
+Trump follows 45 accounts.Each time retrieving friends/id requires one call. And there are 15 calls for each 15 minutes. 45 / 15 * 15 = 45 minutes, but right after the first 30 minutes we can call another 15 times, so less than 45 minutes (and of course larger than 30 minutes) will be spent to collect this data.
+
+If we want to get this data for the four candidates, we need to get the length of friend_counter aka the number of all the friends they follow minus the mutual friends to divide and multiply 15 to get the approximate minutes.
